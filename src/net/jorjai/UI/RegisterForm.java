@@ -3,23 +3,37 @@ package net.jorjai.UI;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-public class LoginForm extends JFrame {
+public class RegisterForm extends JFrame {
     private JPanel cp;
+
     private JLabel titleLabel;
-    private JLabel usernameLabel;
-    private JTextField textField;
+
+    private JLabel firstNameLabel;
+    private JTextField firstNameField;
+
+    private JLabel lastNameLabel;
+    private JTextField lastNameField;
+
+    private JLabel emailLabel;
+    private JTextField emailField;
+    private JLabel emailErrorLabel;
+
     private JLabel passwordLabel;
     private JPasswordField passwordField;
-    private JButton loginButton;
-    private JLabel clickableLabel;
-    private JLabel errorMessage;
+    private JLabel passwordErrorLabel;
 
-    public LoginForm() {
+    private JLabel confirmPasswordLabel;
+    private JPasswordField confirmPasswordField;
+    private JLabel confirmPasswordErrorLabel;
+
+    private JButton registerButton;
+    private JLabel clickableLabel;
+    private JLabel registerErrorLabel;
+
+    public RegisterForm() {
 
         initialize();
     }
@@ -27,10 +41,10 @@ public class LoginForm extends JFrame {
     private void initialize() {
 
         // Properties of the frame
-        this.setTitle("Login - Hotel Management");
+        this.setTitle("Register - Hotel Management");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
-        this.setPreferredSize(new Dimension(400, 500));
+        this.setPreferredSize(new Dimension(500, 600));
         this.pack();
 
         // Get the content pane of the JFrame
@@ -53,96 +67,204 @@ public class LoginForm extends JFrame {
         gbc.insets = new Insets(10, 0, 20, 0);
         cp.add(titleLabel, gbc);
 
-        // Username label
-        usernameLabel = new JLabel("Username");
+        // First name label
+        firstNameLabel = new JLabel("First Name");
+        firstNameLabel.setPreferredSize(new Dimension(190, 13));
         gbc.gridx = 0;
         gbc.gridy = 1;
         gbc.gridwidth = 1;
-        gbc.insets = new Insets(0, 0, 10, 0);
-        cp.add(usernameLabel, gbc);
+        gbc.insets = new Insets(0, 0, 10, 10);
+        cp.add(firstNameLabel, gbc);
 
-        // Username text field
-        textField = new JTextField();
-        textField.setPreferredSize(new Dimension(200, 30));
-        textField.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-                errorMessage.setVisible(false);
-            }
-        });
+        // First name text field
+        firstNameField = new JTextField();
+        firstNameField.setPreferredSize(new Dimension(190, 30));
         gbc.gridx = 0;
         gbc.gridy = 2;
-        gbc.gridwidth = 2;
-        gbc.insets = new Insets(0, 0, 10, 0);
-        cp.add(textField, gbc);
+        gbc.gridwidth = 1;
+        gbc.insets = new Insets(0, 0, 10, 10);
+        cp.add(firstNameField, gbc);
 
-        // Password label
-        passwordLabel = new JLabel("Password");
+        // Last name label
+        lastNameLabel = new JLabel("Last Name");
+        lastNameLabel.setPreferredSize(new Dimension(190, 13));
+        gbc.gridx = 1;
+        gbc.gridy = 1;
+        gbc.gridwidth = 1;
+        gbc.insets = new Insets(0, 10, 10, 0);
+        cp.add(lastNameLabel, gbc);
+
+        // Last name text field
+        lastNameField = new JTextField();
+        lastNameField.setPreferredSize(new Dimension(190, 30));
+        gbc.gridx = 1;
+        gbc.gridy = 2;
+        gbc.gridwidth = 1;
+        gbc.insets = new Insets(0, 10, 10, 0);
+        cp.add(lastNameField, gbc);
+
+        // Email label
+        emailLabel = new JLabel("Email");
+        emailLabel.setPreferredSize(new Dimension(400, 13));
         gbc.gridx = 0;
         gbc.gridy = 3;
-        gbc.gridwidth = 1;
+        gbc.gridwidth = 2;
         gbc.insets = new Insets(0, 0, 10, 0);
-        cp.add(passwordLabel, gbc);
+        cp.add(emailLabel, gbc);
 
-        // Password field
-        passwordField = new JPasswordField();
-        passwordField.setPreferredSize(new Dimension(200, 30));
-        passwordField.addKeyListener(new KeyAdapter() {
+        // Email text field
+        emailField = new JTextField();
+        emailField.setPreferredSize(new Dimension(400, 30));
+        emailField.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent e) {
-                errorMessage.setVisible(false);
+                emailErrorLabel.setVisible(false);
             }
         });
         gbc.gridx = 0;
         gbc.gridy = 4;
         gbc.gridwidth = 2;
         gbc.insets = new Insets(0, 0, 10, 0);
-        cp.add(passwordField, gbc);
+        cp.add(emailField, gbc);
 
-        // Login button
-        loginButton = new JButton("Login");
-        loginButton.setPreferredSize(new Dimension(200, 30));
-        loginButton.setFocusable(true);
-        loginButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        addLoginButtonListener();
+        // Email error label
+        emailErrorLabel = new JLabel("Invalid email");
+        emailErrorLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        emailErrorLabel.setPreferredSize(new Dimension(400, 13));
+        emailErrorLabel.setForeground(Color.RED);
+        emailErrorLabel.setVisible(false);
         gbc.gridx = 0;
         gbc.gridy = 5;
         gbc.gridwidth = 2;
         gbc.insets = new Insets(0, 0, 10, 0);
-        cp.add(loginButton, gbc);
+        cp.add(emailErrorLabel, gbc);
 
-        // Login error message text
-        errorMessage = new JLabel("Invalid username or password");
-        errorMessage.setForeground(Color.RED);
-        errorMessage.setVisible(false);
+        // Password label
+        passwordLabel = new JLabel("Password");
+        passwordLabel.setPreferredSize(new Dimension(400, 13));
         gbc.gridx = 0;
         gbc.gridy = 6;
         gbc.gridwidth = 2;
         gbc.insets = new Insets(0, 0, 10, 0);
-        cp.add(errorMessage, gbc);
+        cp.add(passwordLabel, gbc);
 
-        // 'I don't have an account' clickable text
-        clickableLabel = new JLabel("<html><u>I don't have an account</u></html>");
-        clickableLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        // Password field
+        passwordField = new JPasswordField();
+        passwordField.setPreferredSize(new Dimension(400, 30));
+        passwordField.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                passwordErrorLabel.setVisible(false);
+            }
+        });
         gbc.gridx = 0;
         gbc.gridy = 7;
         gbc.gridwidth = 2;
         gbc.insets = new Insets(0, 0, 10, 0);
+        cp.add(passwordField, gbc);
+
+        // Password error label
+        passwordErrorLabel = new JLabel("Password must be at least 8 characters long");
+        passwordErrorLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        passwordErrorLabel.setPreferredSize(new Dimension(400, 13));
+        passwordErrorLabel.setForeground(Color.RED);
+        passwordErrorLabel.setVisible(false);
+        gbc.gridx = 0;
+        gbc.gridy = 8;
+        gbc.gridwidth = 2;
+        gbc.insets = new Insets(0, 0, 10, 0);
+        cp.add(passwordErrorLabel, gbc);
+
+        // Confirm password label
+        confirmPasswordLabel = new JLabel("Confirm Password");
+        confirmPasswordLabel.setPreferredSize(new Dimension(400, 13));
+        gbc.gridx = 0;
+        gbc.gridy = 9;
+        gbc.gridwidth = 2;
+        gbc.insets = new Insets(0, 0, 10, 0);
+        cp.add(confirmPasswordLabel, gbc);
+
+        // Confirm password field
+        confirmPasswordField = new JPasswordField();
+        confirmPasswordField.setPreferredSize(new Dimension(400, 30));
+        confirmPasswordField.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                confirmPasswordErrorLabel.setVisible(false);
+            }
+        });
+        gbc.gridx = 0;
+        gbc.gridy = 10;
+        gbc.gridwidth = 2;
+        gbc.insets = new Insets(0, 0, 10, 0);
+        cp.add(confirmPasswordField, gbc);
+
+        // Confirm password error label
+        confirmPasswordErrorLabel = new JLabel("Passwords do not match");
+        confirmPasswordErrorLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        confirmPasswordErrorLabel.setPreferredSize(new Dimension(400, 13));
+        confirmPasswordErrorLabel.setForeground(Color.RED);
+        confirmPasswordErrorLabel.setVisible(false);
+        gbc.gridx = 0;
+        gbc.gridy = 11;
+        gbc.gridwidth = 2;
+        gbc.insets = new Insets(0, 0, 10, 0);
+        cp.add(confirmPasswordErrorLabel, gbc);
+
+        // Register button
+        registerButton = new JButton("Register");
+        registerButton.setPreferredSize(new Dimension(200, 30));
+        registerButton.setFocusable(true);
+        registerButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        registerButton.addActionListener(e -> {
+            // Check if the email is valid
+            // Check if the password is at least 8 characters long
+            // Check if the password and confirm password match
+            // If all checks pass, register the user
+            // If any check fails, show an error message
+            emailErrorLabel.setVisible(true);
+            passwordErrorLabel.setVisible(true);
+            confirmPasswordErrorLabel.setVisible(true);
+        });
+        gbc.gridx = 0;
+        gbc.gridy = 12;
+        gbc.gridwidth = 2;
+        gbc.insets = new Insets(0, 0, 10, 0);
+        cp.add(registerButton, gbc);
+
+        // Clickable label
+        clickableLabel = new JLabel("<html><u>Already have an account? Login</u></html>");
+        clickableLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        clickableLabel.setPreferredSize(new Dimension(400, 13));
+        clickableLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        clickableLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                // Open the login form
+                LoginForm loginForm = new LoginForm();
+                loginForm.setVisible(true);
+                dispose();
+            }
+        });
+        gbc.gridx = 0;
+        gbc.gridy = 13;
+        gbc.gridwidth = 2;
+        gbc.insets = new Insets(0, 0, 10, 0);
         cp.add(clickableLabel, gbc);
 
+        // Register error label
+        registerErrorLabel = new JLabel("An unexpected error occurred while registering");
+        registerErrorLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        registerErrorLabel.setPreferredSize(new Dimension(400, 13));
+        registerErrorLabel.setForeground(Color.RED);
+        registerErrorLabel.setVisible(false);
+        gbc.gridx = 0;
+        gbc.gridy = 14;
+        gbc.gridwidth = 2;
+        gbc.insets = new Insets(0, 0, 10, 0);
+        cp.add(registerErrorLabel, gbc);
 
         // Open the window
         setVisible(true);
     }
 
-    private void addLoginButtonListener() {
-        loginButton.addActionListener(e -> {
-            // Check if the username and password are correct
-            // If correct, open the main window
-
-            // If incorrect, show an error message
-            errorMessage.setVisible(true);
-
-        });
-    }
 }
