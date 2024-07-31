@@ -5,11 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a8050710-f327-4670-8695-496c111cdcd1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/data/db_hotel.trace.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/net/jorjai/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/net/jorjai/UI/Dashboard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HotelManagementSoftware.iml" beforeDir="false" afterPath="$PROJECT_DIR$/HotelManagementSoftware.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/db_hotel.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/data/db_hotel.mv.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/db_hotel.trace.db" beforeDir="false" afterPath="$PROJECT_DIR$/data/db_hotel.trace.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/net/jorjai/UI/LoginForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/jorjai/UI/LoginForm.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/net/jorjai/UI/RegisterForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/jorjai/UI/RegisterForm.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/net/jorjai/util/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/jorjai/util/Database.java" afterDir="false" />
@@ -51,7 +54,7 @@
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Repositorios/HotelManagementSoftware/lib/h2-2.3.230.jar",
+    "last_opened_file_path": "C:/Repositorios/HotelManagementSoftware/data/db_hotel.mv.db",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -81,7 +84,7 @@
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Main" />
+      <option name="MAIN_CLASS_NAME" value="net.jorjai.Main" />
       <module name="HotelManagementSoftware" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -110,11 +113,22 @@
       <option name="presentableId" value="Default" />
       <updated>1722347628236</updated>
       <workItem from="1722347629330" duration="2397000" />
-      <workItem from="1722350061178" duration="25476000" />
+      <workItem from="1722350061178" duration="35452000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

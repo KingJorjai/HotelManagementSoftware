@@ -1,5 +1,7 @@
 package net.jorjai.UI;
 
+import net.jorjai.util.Database;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
@@ -20,6 +22,8 @@ public class LoginForm extends JFrame {
     public LoginForm() {
 
         initialize();
+        addListeners();
+        setVisible(true);
     }
 
     private void initialize() {
@@ -54,7 +58,6 @@ public class LoginForm extends JFrame {
         // Email label
         emailLabel = new JLabel("Email");
         emailLabel.setPreferredSize(new Dimension(200, 10));
-
         gbc.gridx = 0;
         gbc.gridy = 1;
         gbc.gridwidth = 1;
@@ -64,12 +67,6 @@ public class LoginForm extends JFrame {
         // Username text field
         emailField = new JTextField();
         emailField.setPreferredSize(new Dimension(200, 30));
-        emailField.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-                loginErrorLabel.setVisible(false);
-            }
-        });
         gbc.gridx = 0;
         gbc.gridy = 2;
         gbc.gridwidth = 2;
@@ -79,7 +76,6 @@ public class LoginForm extends JFrame {
         // Password label
         passwordLabel = new JLabel("Password");
         passwordLabel.setPreferredSize(new Dimension(200, 10));
-
         gbc.gridx = 0;
         gbc.gridy = 3;
         gbc.gridwidth = 1;
@@ -89,12 +85,6 @@ public class LoginForm extends JFrame {
         // Password field
         passwordField = new JPasswordField();
         passwordField.setPreferredSize(new Dimension(200, 30));
-        passwordField.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-                loginErrorLabel.setVisible(false);
-            }
-        });
         gbc.gridx = 0;
         gbc.gridy = 4;
         gbc.gridwidth = 2;
@@ -106,14 +96,6 @@ public class LoginForm extends JFrame {
         loginButton.setPreferredSize(new Dimension(200, 30));
         loginButton.setFocusable(true);
         loginButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        loginButton.addActionListener(e -> {
-            // Check if the username and password are correct
-            // If correct, open the main window
-
-            // If incorrect, show an error message
-            loginErrorLabel.setVisible(true);
-
-        });
         gbc.gridx = 0;
         gbc.gridy = 5;
         gbc.gridwidth = 2;
@@ -134,6 +116,55 @@ public class LoginForm extends JFrame {
         clickableLabel = new JLabel("<html><u>Not registered? Create an account</u></html>");
         clickableLabel.setHorizontalAlignment(SwingConstants.CENTER);
         clickableLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        gbc.gridx = 0;
+        gbc.gridy = 7;
+        gbc.gridwidth = 2;
+        gbc.insets = new Insets(0, 0, 10, 0);
+        cp.add(clickableLabel, gbc);
+    }
+
+    private void addListeners() {
+
+        // Email field listener
+        emailField.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                loginErrorLabel.setVisible(false);
+            }
+        });
+
+        // Password field listener
+        passwordField.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                loginErrorLabel.setVisible(false);
+            }
+        });
+
+        // Login button listener
+        loginButton.addActionListener(event -> {
+            try {
+                // Check credentials
+                int staffID = Database.loginStaff(emailField.getText(), new String(passwordField.getPassword()));
+
+                // If the login is successful
+                if (staffID != -1) {
+                    // Open the dashboard (main window)
+                    new Dashboard(staffID);
+
+                    // Close the login form
+                    dispose();
+                } else {
+                    // Show error message
+                    loginErrorLabel.setVisible(true);
+                }
+            } catch (Exception e) {
+                // Show dialog
+                JOptionPane.showMessageDialog(null, "Error connecting to the database", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        });
+
+        // Clickable label listener
         clickableLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
 
@@ -144,14 +175,5 @@ public class LoginForm extends JFrame {
                 dispose();
             }
         });
-        gbc.gridx = 0;
-        gbc.gridy = 7;
-        gbc.gridwidth = 2;
-        gbc.insets = new Insets(0, 0, 10, 0);
-        cp.add(clickableLabel, gbc);
-
-
-        // Open the window
-        setVisible(true);
     }
 }

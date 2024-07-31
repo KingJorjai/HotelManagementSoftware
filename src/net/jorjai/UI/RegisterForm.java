@@ -1,10 +1,15 @@
 package net.jorjai.UI;
 
+import net.jorjai.util.Database;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 public class RegisterForm extends JFrame {
     private JPanel cp;
@@ -36,6 +41,8 @@ public class RegisterForm extends JFrame {
     public RegisterForm() {
 
         initialize();
+        addListeners();
+        setVisible(true);
     }
 
     private void initialize() {
@@ -115,12 +122,6 @@ public class RegisterForm extends JFrame {
         // Email text field
         emailField = new JTextField();
         emailField.setPreferredSize(new Dimension(400, 30));
-        emailField.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-                emailErrorLabel.setVisible(false);
-            }
-        });
         gbc.gridx = 0;
         gbc.gridy = 4;
         gbc.gridwidth = 2;
@@ -151,12 +152,6 @@ public class RegisterForm extends JFrame {
         // Password field
         passwordField = new JPasswordField();
         passwordField.setPreferredSize(new Dimension(400, 30));
-        passwordField.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-                passwordErrorLabel.setVisible(false);
-            }
-        });
         gbc.gridx = 0;
         gbc.gridy = 7;
         gbc.gridwidth = 2;
@@ -187,12 +182,6 @@ public class RegisterForm extends JFrame {
         // Confirm password field
         confirmPasswordField = new JPasswordField();
         confirmPasswordField.setPreferredSize(new Dimension(400, 30));
-        confirmPasswordField.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-                confirmPasswordErrorLabel.setVisible(false);
-            }
-        });
         gbc.gridx = 0;
         gbc.gridy = 10;
         gbc.gridwidth = 2;
@@ -216,16 +205,6 @@ public class RegisterForm extends JFrame {
         registerButton.setPreferredSize(new Dimension(200, 30));
         registerButton.setFocusable(true);
         registerButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        registerButton.addActionListener(e -> {
-            // Check if the email is valid
-            // Check if the password is at least 8 characters long
-            // Check if the password and confirm password match
-            // If all checks pass, register the user
-            // If any check fails, show an error message
-            emailErrorLabel.setVisible(true);
-            passwordErrorLabel.setVisible(true);
-            confirmPasswordErrorLabel.setVisible(true);
-        });
         gbc.gridx = 0;
         gbc.gridy = 12;
         gbc.gridwidth = 2;
@@ -237,14 +216,6 @@ public class RegisterForm extends JFrame {
         clickableLabel.setHorizontalAlignment(SwingConstants.CENTER);
         clickableLabel.setPreferredSize(new Dimension(400, 13));
         clickableLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        clickableLabel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                // Open the login form
-                LoginForm loginForm = new LoginForm();
-                loginForm.setVisible(true);
-                dispose();
-            }
-        });
         gbc.gridx = 0;
         gbc.gridy = 13;
         gbc.gridwidth = 2;
@@ -262,9 +233,89 @@ public class RegisterForm extends JFrame {
         gbc.gridwidth = 2;
         gbc.insets = new Insets(0, 0, 10, 0);
         cp.add(registerErrorLabel, gbc);
+    }
 
-        // Open the window
-        setVisible(true);
+    private void addListeners() {
+        // Email field listener
+        emailField.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                emailErrorLabel.setVisible(false);
+            }
+        });
+
+        // Password field listener
+        passwordField.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                passwordErrorLabel.setVisible(false);
+            }
+        });
+
+        // Confirm password field listener
+        confirmPasswordField.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                confirmPasswordErrorLabel.setVisible(false);
+            }
+        });
+
+        // Register button listener
+        registerButton.addActionListener(e -> {
+
+            // Retrieve data from the fields
+            String firstName = firstNameField.getText();
+            String lastName = lastNameField.getText();
+            String email = emailField.getText();
+            String password = new String(passwordField.getPassword());
+            String confirmPassword = new String(confirmPasswordField.getPassword());
+
+            // Check if the email is valid using regex
+            if (!email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")) {
+                emailErrorLabel.setVisible(true);
+                return;
+            }
+
+            // Check if the password is at least 8 characters long
+            if (password.length() < 8) {
+                passwordErrorLabel.setVisible(true);
+                return;
+            }
+
+            // Check if the password and confirm password match
+            if (!password.equals(confirmPassword)) {
+                confirmPasswordErrorLabel.setVisible(true);
+                return;
+            }
+
+            // Register the staff user in the database
+            try {
+                // Register the staff user in the database
+                Database.registerStaff(firstName, lastName, email, password);
+
+                // Show success dialog
+                JOptionPane.showMessageDialog(null, "Staff member registered successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+            } catch (SQLException ex) {
+                // Show error dialog
+                JOptionPane.showMessageDialog(null, "Error connecting to the database", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+
+            // Open the login form
+            new LoginForm();
+            dispose();
+
+        });
+
+        // Clickable label listener
+        clickableLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                // Open the login form
+                LoginForm loginForm = new LoginForm();
+                loginForm.setVisible(true);
+                dispose();
+            }
+        });
+
     }
 
 }
