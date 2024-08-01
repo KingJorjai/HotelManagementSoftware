@@ -5,17 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a8050710-f327-4670-8695-496c111cdcd1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/net/jorjai/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/net/jorjai/UI/Dashboard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/db_hotel.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/data/db_hotel.mv.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/db_hotel.trace.db" beforeDir="false" afterPath="$PROJECT_DIR$/data/db_hotel.trace.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/net/jorjai/UI/LoginForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/jorjai/UI/LoginForm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/net/jorjai/UI/RegisterForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/jorjai/UI/RegisterForm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/net/jorjai/util/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/jorjai/util/Database.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/net/jorjai/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/jorjai/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/net/jorjai/UI/Dashboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/jorjai/UI/Dashboard.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,7 +44,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "UI_DESIGNER_EDITOR_MODE.PaletteManager.SHOW": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "develop",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Repositorios/HotelManagementSoftware/data/db_hotel.mv.db",
@@ -113,7 +106,7 @@
       <option name="presentableId" value="Default" />
       <updated>1722347628236</updated>
       <workItem from="1722347629330" duration="2397000" />
-      <workItem from="1722350061178" duration="35452000" />
+      <workItem from="1722350061178" duration="47057000" />
     </task>
     <servers />
   </component>

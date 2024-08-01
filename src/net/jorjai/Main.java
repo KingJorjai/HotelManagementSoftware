@@ -1,5 +1,8 @@
 package net.jorjai;
 
+import net.jorjai.UI.Dashboard;
+import net.jorjai.UI.LoginForm;
+
 import javax.swing.*;
 import java.sql.SQLException;
 
@@ -8,7 +11,7 @@ public class Main {
 
         // Set the look and feel of the application to the system's look and feel
         try {
-            UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -22,13 +25,13 @@ public class Main {
             e.printStackTrace();
 
             // Show error dialog
-            JOptionPane.showMessageDialog(null, "Error initializing the database", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error initializing the database", "Error", JOptionPane.ERROR_MESSAGE);
         }
 
         // Show the login form
-        new net.jorjai.UI.LoginForm();
+//        new LoginForm();
 
-//        // Debug only: open the main window directly
-//        MainWindow mw = new net.jorjai.UI.MainWindow(1);
+        // Debug only: open the main window directly
+        Dashboard mw = new net.jorjai.UI.Dashboard(1);
     }
 }
